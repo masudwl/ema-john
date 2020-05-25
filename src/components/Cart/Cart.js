@@ -9,7 +9,7 @@ const Cart = (props) => {
     let total = 0; 
     for (let i = 0; i < cart.length; i++) {
         const product = cart[i];
-       total = total + product.price; 
+       total = total + product.price * product.quantity; 
     } 
     let shipping = 0; 
     if(total> 500){
@@ -34,7 +34,7 @@ const Cart = (props) => {
             <p>Shipping Cost: {shipping}</p>
             <p>TAX : {formateNumber(tax)}</p>
             <p>Total Price: {formateNumber(total+shipping+tax)}</p>
-            <button className="btn">Confrim</button>
+            {props.children}
         </div>
     );
 };

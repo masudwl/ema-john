@@ -1,0 +1,7 @@
+.reviewItem{
+    border-bottom: 1px solid gray;
+    margin-bottom: 5px;
+    padding: 5px;
+    margin-left: 100px;
+    width: 75%;
+}
