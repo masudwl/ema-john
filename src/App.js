@@ -12,7 +12,9 @@ import {
   Link
 } from "react-router-dom";
 import ProductDetail from './components/ProductDetail/ProductDetail';
-
+import Login from './components/Login/Login';
+import * as firebase from "firebase/app";
+import "firebase/auth";
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
         <Route path="/inventory"><Inventory></Inventory></Route>
         <Route exact path="/"><Shop></Shop></Route>
         <Route path="/product/:productKey"><ProductDetail></ProductDetail></Route>
+        <Route path="/login"><Login></Login></Route>
         <Route path="*"><Notfound></Notfound></Route>
         
       </Switch>
