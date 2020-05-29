@@ -4,6 +4,7 @@ import fakeData from '../../fakeData';
 import ReviewItem from '../ReveiwItem/ReviewItem';
 import Cart from '../../components/Cart/Cart';
 import lastImg from '../../images/giphy.gif'; 
+import { Link } from 'react-router-dom';
 
 
 const Review = () => {
@@ -51,7 +52,9 @@ const Review = () => {
         </div>
         <div className="cart-container">
             <Cart cart={cart}>
+            <Link to="shipment">
                 <button onClick ={placeOrderBtn} className="btn">Place Order</button>
+            </Link>
             </Cart>
         </div>
         </div>

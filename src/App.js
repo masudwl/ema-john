@@ -14,6 +14,7 @@ import {
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Login from './components/Login/Login';
 import { authContextProvider } from './components/Login/use-auth';
+import Shipment from './components/Shipment/Shipment';
 
 
 function App() {
@@ -40,6 +41,9 @@ function App() {
             </Route>
             <Route path="/login">
               <Login></Login>
+            </Route>
+            <Route path="/shipment">
+              <Shipment></Shipment>
             </Route>
             <Route path="*"><Notfound></Notfound></Route>
             

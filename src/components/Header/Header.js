@@ -2,12 +2,10 @@ import React from 'react';
 import logo from '../../images/logo.png';
 import './Header.css';
 import { useAuth } from '../Login/use-auth';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
    const auth = useAuth(); 
-   console.log(auth.user)
-
-
     
     return (
         <div className="header">
@@ -19,7 +17,10 @@ const Header = () => {
                 <a href="/review">Order Review</a>
                 <a href="/inventory">Manage Inventory Stock</a>
                 <a href="/login">Login</a>
-                <span style={{color: 'red'}}>{}</span>
+                
+                
+                    <span style={{color: 'red'}}>{}</span>
+             
             </nav>
             
         </div>
