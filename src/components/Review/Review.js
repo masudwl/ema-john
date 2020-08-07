@@ -5,6 +5,7 @@ import ReviewItem from '../ReveiwItem/ReviewItem';
 import Cart from '../../components/Cart/Cart';
 import lastImg from '../../images/giphy.gif'; 
 import { Link } from 'react-router-dom';
+import Auth from '../Login/use-auth';
 
 
 const Review = () => {
@@ -24,6 +25,7 @@ const Review = () => {
     useEffect(() => {
        const localStorage = getDatabaseCart();
        const productKeys = Object.keys(localStorage); 
+       
        const cartProducts = productKeys.map(key => {
            const productData = fakeData.find(pd => pd.key === key); 
            productData.quantity = localStorage[key]; 
@@ -37,6 +39,8 @@ const Review = () => {
         thankYou = <img src={lastImg} alt=""/>
    }
 
+   const auth = Auth(); 
+
     return (
         <div className="shop-container">
             <div className="product-container">
@@ -49,11 +53,16 @@ const Review = () => {
                     ></ReviewItem>)
             }
             {thankYou}
+            {!cart.length && <h1>Your cart is Emty. <a href="/shop">Keep Shopping </a></h1>}
         </div>
         <div className="cart-container">
             <Cart cart={cart}>
             <Link to="shipment">
-                <button onClick ={placeOrderBtn} className="btn">Place Order</button>
+               { auth.user ? 
+                   <button onClick ={placeOrderBtn} className="btn">Checkout</button>
+                   : 
+                   <button onClick ={placeOrderBtn} className="btn">Proceed Order</button>
+                }
             </Link>
             </Cart>
         </div>

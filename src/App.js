@@ -13,14 +13,14 @@ import {
 } from "react-router-dom";
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Login from './components/Login/Login';
-import { authContextProvider } from './components/Login/use-auth';
+import { AuthContextProvider, PrivateRoute } from './components/Login/use-auth';
 import Shipment from './components/Shipment/Shipment';
 
 
 function App() {
   return (
       <div>
-      <authContextProvider>
+      <AuthContextProvider>
         <Router>
         <Header></Header>
           <Switch>
@@ -42,14 +42,14 @@ function App() {
             <Route path="/login">
               <Login></Login>
             </Route>
-            <Route path="/shipment">
+            <PrivateRoute path="/shipment">
               <Shipment></Shipment>
-            </Route>
+            </PrivateRoute>
             <Route path="*"><Notfound></Notfound></Route>
             
           </Switch>
         </Router>
-        </authContextProvider>
+        </AuthContextProvider>
       </div>
   );
 }

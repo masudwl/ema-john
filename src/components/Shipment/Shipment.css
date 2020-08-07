@@ -1,0 +1,12 @@
+.form-group{
+    margin: 15px 200px;
+}
+.form-group input {
+    display: block;
+    width: 400px;
+    padding: 10px;
+    margin-top: 20px;
+}
+.error-msg {
+    color: red;
+}
