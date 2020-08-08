@@ -8,8 +8,7 @@ import Notfound from './components/Notfound/Notfound';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Login from './components/Login/Login';

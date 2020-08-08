@@ -1,22 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import { getDatabaseCart, removeFromDatabaseCart, processOrder } from '../../utilities/databaseManager';
-import fakeData from '../../fakeData';
+import { getDatabaseCart, removeFromDatabaseCart} from '../../utilities/databaseManager';
 import ReviewItem from '../ReveiwItem/ReviewItem';
 import Cart from '../../components/Cart/Cart';
-import lastImg from '../../images/giphy.gif'; 
 import { Link } from 'react-router-dom';
 import Auth from '../Login/use-auth';
 
 
 const Review = () => {
     const [cart, setCart] = useState([]);
-    const [orderPlace, setPlaceOrder] = useState(false); 
-    
-    const placeOrderBtn =() =>{
-        setCart([]); 
-        setPlaceOrder(true); 
-        processOrder(); 
-    }
+
     const removeBtn = (productKeys => {
         const newCart = cart.filter(pd => pd.key !== productKeys); 
         setCart(newCart); 
@@ -25,20 +17,25 @@ const Review = () => {
     useEffect(() => {
        const localStorage = getDatabaseCart();
        const productKeys = Object.keys(localStorage); 
-       
+       console.log(productKeys);
+       fetch('http://localhost:4000/getsProductByKey', {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify(productKeys)
+       })
+       .then(res => res.json())
+       .then(data => {
        const cartProducts = productKeys.map(key => {
-           const productData = fakeData.find(pd => pd.key === key); 
+           const productData = data.find(pd => pd.key === key); 
            productData.quantity = localStorage[key]; 
            return productData;
        }); 
        setCart(cartProducts);
+    })
     }, [])
    
-    let thankYou; 
-   if(orderPlace){
-        thankYou = <img src={lastImg} alt=""/>
-   }
-
    const auth = Auth(); 
 
     return (
@@ -52,16 +49,15 @@ const Review = () => {
                     
                     ></ReviewItem>)
             }
-            {thankYou}
             {!cart.length && <h1>Your cart is Emty. <a href="/shop">Keep Shopping </a></h1>}
         </div>
         <div className="cart-container">
             <Cart cart={cart}>
             <Link to="shipment">
                { auth.user ? 
-                   <button onClick ={placeOrderBtn} className="btn">Checkout</button>
+                   <button  className="btn">Checkout</button>
                    : 
-                   <button onClick ={placeOrderBtn} className="btn">Proceed Order</button>
+                   <button  className="btn">Proceed Order</button>
                 }
             </Link>
             </Cart>

@@ -1,6 +1,5 @@
 import React from 'react';
 import Auth from './use-auth'; 
-import { Link } from 'react-router-dom';
 
 const Login = () => {
     const auth = Auth(); 

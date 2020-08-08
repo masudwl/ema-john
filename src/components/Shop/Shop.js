@@ -7,7 +7,6 @@ import { addToDatabaseCart, getDatabaseCart } from '../../utilities/databaseMana
 import { Link } from 'react-router-dom';
 
 const Shop = () => {
-    // const firstTen = fakeData.slice(0,10); 
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
     useEffect(()=>{
@@ -15,8 +14,6 @@ const Shop = () => {
         .then(res => res.json())
         .then(data => {
             setProducts(data);
-            console.log(data);
-            
         })
     }, [])
     useEffect(() => {

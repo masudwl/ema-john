@@ -9,12 +9,12 @@ const ProductDetail = () => {
     const [product, setProducts] = useState(null); 
 
     useEffect( () => {
-        fetch('http://localhost:4000/product/' +  productKey)
+        fetch('http://localhost:4000/products/' +  productKey)
         .then(res => res.json())
         .then(data => {
             setProducts(data);
         })
-    }, [])
+    }, [productKey])
     return (
 
         <div>
